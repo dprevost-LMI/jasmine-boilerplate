@@ -60,3 +60,6 @@ typings/
 # WebdriverIO files
 errorShots
 .vscode
+
+# VS Code Local History
+.history
