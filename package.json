@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "wdio run wdio.sauce.conf.ts",
+    "test": "wdio run wdio.local.conf.ts",
     "test:local": "wdio run wdio.local.conf.ts",
     "test:sauce": "wdio run wdio.sauce.conf.ts"
   },
