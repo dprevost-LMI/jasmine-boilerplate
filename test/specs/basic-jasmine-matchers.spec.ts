@@ -1,4 +1,3 @@
-
 describe('Basic Jasmine Matchers', () => {
     it('Jasmine equality matchers', async () => {
         await browser.url('https://webdriver.io')

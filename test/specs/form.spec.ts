@@ -1,3 +1,4 @@
+import { expect as wdioExpect } from 'expect-webdriverio'
 import FormPage from '../pageobjects/form.page.js'
 
 describe('auth form', () => {
@@ -8,8 +9,8 @@ describe('auth form', () => {
         await FormPage.submit()
 
         await FormPage.flash.waitForDisplayed()
-        await expect(FormPage.flash).toHaveText(
-            expect.stringContaining('Your username is invalid!')
+        await expectAsync(FormPage.flash).toHaveText(
+            wdioExpect.stringContaining('Your username is invalid!')
         )
     })
 
@@ -20,8 +21,8 @@ describe('auth form', () => {
         await FormPage.submit()
 
         await FormPage.flash.waitForDisplayed()
-        await expect(FormPage.flash).toHaveText(
-            expect.stringContaining('You logged into a secure area!')
+        await expectAsync(FormPage.flash).toHaveText(
+            wdioExpect.stringContaining('You logged into a secure area!')
         )
     })
 })

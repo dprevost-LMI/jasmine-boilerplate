@@ -37,19 +37,19 @@ describe('WebdriverIO toMatchSnapshot Tests', () => {
 
         // Test basic toMatchSnapshot for elements
         const heroSection = await $('.hero')
-        await expect(heroSection).toExist()
+        await expectAsync(heroSection).toExist()
 
         // Snapshot service is now properly initialized following the working pattern from:
         // https://github.com/dprevost-LMI/expect-webdriverio/blob/enhanced-expect-wdio-typing/test/snapshot.test.ts
         // These should now work with actual snapshot functionality!
 
         // Basic snapshot calls (these should work with the new setup)
-        await expect(heroSection).toMatchSnapshot()
-        await expect(heroSection).toMatchSnapshot('hero-section-snapshot')
+        await expectAsync(heroSection).toMatchSnapshot()
+        await expectAsync(heroSection).toMatchSnapshot('hero-section-snapshot')
 
         // Test with a different element to show multiple snapshots work
         const pageTitle = await $('h1')
-        await expect(pageTitle).toMatchSnapshot('page-title-snapshot')
+        await expectAsync(pageTitle).toMatchSnapshot('page-title-snapshot')
     })
 
     it('Chainable element snapshot types', async () => {
@@ -59,29 +59,29 @@ describe('WebdriverIO toMatchSnapshot Tests', () => {
         const navigation = $('nav')
 
         // Verify the element can be accessed (to avoid unused variable warning)
-        expect(navigation).toBeDefined()
+        expectAsync(navigation).toBeDefined()
 
         // With the new snapshot service setup, these should work with actual functionality
-        await expect(navigation).toMatchSnapshot()
-        await expect(navigation).toMatchSnapshot('navigation-snapshot')
+        await expectAsync(navigation).toMatchSnapshot()
+        await expectAsync(navigation).toMatchSnapshot('navigation-snapshot')
 
         // Test with different elements to show multiple snapshots work
         const hasFooter = await $('footer, .footer, [class*="footer"]').isExisting()
         const footerElement = hasFooter ?
             await $('footer, .footer, [class*="footer"]') :
             await $('body')
-        await expect(footerElement).toMatchSnapshot('footer-or-body-snapshot')
+        await expectAsync(footerElement).toMatchSnapshot('footer-or-body-snapshot')
     })
 
     it('CSS property snapshot types', async () => {
         await browser.url('https://webdriver.io')
 
         const heroTitle = await $('.hero__title')
-        await expect(heroTitle).toExist()
+        await expectAsync(heroTitle).toExist()
 
         // Test CSS property snapshots - these should have correct types and functionality
         const colorProperty = heroTitle.getCSSProperty('color')
-        await expect(colorProperty).toBeDefined()
+        await expectAsync(colorProperty).toBeDefined()
     })
 
     it('Element existence and snapshot type compatibility', async () => {
@@ -96,8 +96,8 @@ describe('WebdriverIO toMatchSnapshot Tests', () => {
             const firstLink = navLinks[0]
 
             // These should compile without type errors
-            await expect(firstLink).toMatchSnapshot('first-nav-link')
-            await expect(firstLink).toMatchInlineSnapshot(`"<a class="navbar__brand" href="/">
+            await expectAsync(firstLink).toMatchSnapshot('first-nav-link')
+            await expectAsync(firstLink).toMatchInlineSnapshot(`"<a class="navbar__brand" href="/">
   <div class="navbar__logo">
     <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2aWV3Qm94PSIwIDAgNjQgNjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+TG9nbyBSZWd1bGFyPC90aXRsZT4KICAgIDxnIGlkPSJMb2dvLVJlZ3VsYXIiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUiIGZpbGw9IiNFQTU5MDYiIHg9IjAiIHk9IjAiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjUiPjwvcmVjdD4KICAgICAgICA8cGF0aCBkPSJNOCwxNiBMOCw0OCBMNiw0OCBMNiwxNiBMOCwxNiBaIE00MywxNiBDNTEuODM2NTU2LDE2IDU5LDIzLjE2MzQ0NCA1OSwzMiBDNTksNDAuODM2NTU2IDUxLjgzNjU1Niw0OCA0Myw0OCBDMzQuMTYzNDQ0LDQ4IDI3LDQwLjgzNjU1NiAyNywzMiBDMjcsMjMuMTYzNDQ0IDM0LjE2MzQ0NCwxNiA0MywxNiBaIE0yNywxNiBMMTQuMTA2LDQ3Ljk5OTIwNzggTDExLjk5OSw0Ny45OTkyMDc4IEwyNC44OTQsMTYgTDI3LDE2IFogTTQzLDE4IEMzNS4yNjgwMTM1LDE4IDI5LDI0LjI2ODAxMzUgMjksMzIgQzI5LDM5LjczMTk4NjUgMzUuMjY4MDEzNSw0NiA0Myw0NiBDNTAuNzMxOTg2NSw0NiA1NywzOS43MzE5ODY1IDU3LDMyIEM1NywyNC4yNjgwMTM1IDUwLjczMTk4NjUsMTggNDMsMTggWiIgaWQ9IkNvbWJpbmVkLVNoYXBlIiBmaWxsPSIjRkZGRkZGIj48L3BhdGg+CiAgICA8L2c+Cjwvc3ZnPg==" alt="WebdriverIO" class="themedComponent_pgdv themedComponent--dark_lHq0" />
   </div>
@@ -105,7 +105,7 @@ describe('WebdriverIO toMatchSnapshot Tests', () => {
 
             // Test with chainable array element
             const chainableFirstLink = $('nav a')
-            await expect(chainableFirstLink).toMatchSnapshot('chainable-first-link')
+            await expectAsync(chainableFirstLink).toMatchSnapshot('chainable-first-link')
         }
     })
 
@@ -116,17 +116,17 @@ describe('WebdriverIO toMatchSnapshot Tests', () => {
         const heroSection = await $('.hero')
 
         // Jasmine matchers (these should work)
-        expect(heroSection).toBeDefined()
-        await expect(heroSection).toExist() // WebdriverIO matcher
+        expectAsync(heroSection).toBeDefined()
+        await expectAsync(heroSection).toExist() // WebdriverIO matcher
 
         // Verify element properties with Jasmine matchers
         const isDisplayed = await heroSection.isDisplayed()
-        expect(isDisplayed).toBe(true) // Jasmine matcher
+        expectAsync(isDisplayed).toBe(true) // Jasmine matcher
 
         // Test combined usage showing both types work together
         const elementText = await heroSection.getText()
-        expect(elementText.length).toBeGreaterThan(0) // Jasmine matcher
-        expect(typeof elementText).toBe('string') // Jasmine matcher
+        expectAsync(elementText.length).toBeGreaterThan(0) // Jasmine matcher
+        expectAsync(typeof elementText).toBe('string') // Jasmine matcher
     })
 
     it('Type assertions for snapshot matchers', async () => {
@@ -137,21 +137,21 @@ describe('WebdriverIO toMatchSnapshot Tests', () => {
         const chainableElement = $('.hero__title')
 
         // Element snapshots - should work without type errors
-        await expect(element).toMatchSnapshot()
-        await expect(element).toMatchSnapshot('test label')
+        await expectAsync(element).toMatchSnapshot()
+        await expectAsync(element).toMatchSnapshot('test label')
 
         // Use a different element for negative testing
         const titleElement = await $('.hero__title')
-        await expect(titleElement).toMatchSnapshot('title-snapshot')
+        await expectAsync(titleElement).toMatchSnapshot('title-snapshot')
         // Skip negative assertion that was causing snapshot mismatch
 
         // Chainable element snapshots - should return Promise<void>
-        await expect(chainableElement).toMatchSnapshot()
-        await expect(chainableElement).toMatchSnapshot('test label')
+        await expectAsync(chainableElement).toMatchSnapshot()
+        await expectAsync(chainableElement).toMatchSnapshot('test label')
 
         // Use different chainable element for negative testing
         const chainableNav = $('nav')
-        await expect(chainableNav).toMatchSnapshot('chainable-nav')
+        await expectAsync(chainableNav).toMatchSnapshot('chainable-nav')
     })
 
     it('Negative assertions and edge cases', async () => {
@@ -164,24 +164,24 @@ describe('WebdriverIO toMatchSnapshot Tests', () => {
         const titleElement = await $('.hero__title')
         const subtitleElement = await $('.hero__subtitle')
 
-        await expect(titleElement).toMatchSnapshot('title-element')
-        await expect(subtitleElement).toMatchSnapshot('subtitle-element')
+        await expectAsync(titleElement).toMatchSnapshot('title-element')
+        await expectAsync(subtitleElement).toMatchSnapshot('subtitle-element')
 
         // Note: Negative assertions are working, but depend on actual content differences
         // For demo purposes, we focus on positive snapshot functionality
 
         // Test different snapshot labels for the same element
-        await expect(element).toMatchSnapshot('hero-element-snapshot-1')
-        await expect(chainableElement).toMatchSnapshot('chainable-element-snapshot-1')
+        await expectAsync(element).toMatchSnapshot('hero-element-snapshot-1')
+        await expectAsync(chainableElement).toMatchSnapshot('chainable-element-snapshot-1')
 
         // Note: Inline snapshot negative assertions work differently
         // They compare against the inline content in the test file
 
         // Test with different snapshot labels
-        await expect(element).toMatchSnapshot('hero-element-snapshot-1')
-        await expect(element).toMatchSnapshot('hero-element-snapshot-2')
+        await expectAsync(element).toMatchSnapshot('hero-element-snapshot-1')
+        await expectAsync(element).toMatchSnapshot('hero-element-snapshot-2')
 
-        await expect(chainableElement).toMatchSnapshot('chainable-snapshot-1')
-        await expect(chainableElement).toMatchSnapshot('chainable-snapshot-2')
+        await expectAsync(chainableElement).toMatchSnapshot('chainable-snapshot-1')
+        await expectAsync(chainableElement).toMatchSnapshot('chainable-snapshot-2')
     })
 })

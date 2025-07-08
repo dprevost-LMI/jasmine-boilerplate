@@ -1,3 +1,4 @@
+import { expect as wdioExpect } from 'expect-webdriverio'
 describe('Standard Expect Matchers', () => {
     it('Standard expect matchers - toEqual and toBe', async () => {
         await browser.url('https://webdriver.io')
@@ -15,18 +16,18 @@ describe('Standard Expect Matchers', () => {
 
         // Test element dimensions with standard matchers
         const size = await heroSection.getSize()
-        expect(size).toEqual(expect.objectContaining({
-            width: expect.any(Number),
-            height: expect.any(Number),
+        expect(size).toEqual(wdioExpect.objectContaining({
+            width: wdioExpect.any(Number),
+            height: wdioExpect.any(Number),
         }))
         expect(size.width).toBeGreaterThan(0)
         expect(size.height).toBeGreaterThan(0)
 
         // Test element location
         const location = await heroSection.getLocation()
-        expect(location).toEqual(expect.objectContaining({
-            x: expect.any(Number),
-            y: expect.any(Number),
+        expect(location).toEqual(wdioExpect.objectContaining({
+            x: wdioExpect.any(Number),
+            y: wdioExpect.any(Number),
         }))
 
         // Test browser properties with standard matchers
@@ -35,13 +36,13 @@ describe('Standard Expect Matchers', () => {
         expect(currentUrl).toMatch(/^https:\/\/webdriver\.io/)
 
         const title = await browser.getTitle()
-        expect(title).toEqual(expect.stringContaining('WebdriverIO'))
+        expect(title).toEqual(wdioExpect.stringContaining('WebdriverIO'))
         expect(title.length).toBeGreaterThan(0)
 
         // Test element text content with standard matchers
         // Use page title instead since h1 might be empty
         const pageTitle = await browser.getTitle()
-        expect(pageTitle).toEqual(expect.stringContaining('WebdriverIO'))
+        expect(pageTitle).toEqual(wdioExpect.stringContaining('WebdriverIO'))
         expect(typeof pageTitle).toBe('string')
         expect(pageTitle.length).toBeGreaterThan(0)
 
@@ -53,9 +54,9 @@ describe('Standard Expect Matchers', () => {
 
         // Test CSS properties with standard matchers
         const heroDisplay = await heroSection.getCSSProperty('display')
-        expect(heroDisplay).toEqual(expect.objectContaining({
+        expect(heroDisplay).toEqual(wdioExpect.objectContaining({
             property: 'display',
-            value: expect.any(String),
+            value: wdioExpect.any(String),
         }))
         expect(heroDisplay.value).not.toBe('none')
 
@@ -113,18 +114,18 @@ describe('Standard Expect Matchers', () => {
 
         // Test window handles as array
         const windowHandles = await browser.getWindowHandles()
-        expect(windowHandles).toEqual(expect.arrayContaining([expect.any(String)]))
+        expect(windowHandles).toEqual(wdioExpect.arrayContaining([wdioExpect.any(String)]))
         expect(windowHandles.length).toBe(1)
         expect(Array.isArray(windowHandles)).toBe(true)
 
         // Test window size as object
         const windowSize = await browser.getWindowSize()
         expect(windowSize).toEqual({
-            width: expect.any(Number),
-            height: expect.any(Number),
+            width: wdioExpect.any(Number),
+            height: wdioExpect.any(Number),
         })
-        expect(windowSize).toEqual(expect.objectContaining({
-            width: expect.any(Number),
+        expect(windowSize).toEqual(wdioExpect.objectContaining({
+            width: wdioExpect.any(Number),
         }))
 
         // Test element location and size as objects with standard matchers
@@ -133,13 +134,13 @@ describe('Standard Expect Matchers', () => {
         const size = await heroSection.getSize()
 
         expect(location).toEqual({
-            x: expect.any(Number),
-            y: expect.any(Number),
+            x: jasmine.any(Number),
+            y: jasmine.any(Number),
         })
 
         expect(size).toEqual({
-            width: expect.any(Number),
-            height: expect.any(Number),
+            width: jasmine.any(Number),
+            height: jasmine.any(Number),
         })
 
         // Test basic size validation with standard matchers
@@ -148,7 +149,7 @@ describe('Standard Expect Matchers', () => {
 
         // Test multiple elements as array
         const allLinks = await $$('a')
-        expect(allLinks).toEqual(expect.any(Array))
+        expect(allLinks).toEqual(wdioExpect.any(Array))
         expect(await $$('a').length).toBeGreaterThan(0)
 
         // Test element texts as array - test first 3 elements
@@ -159,7 +160,7 @@ describe('Standard Expect Matchers', () => {
             linkTexts.push(linkText)
         }
 
-        expect(linkTexts).toEqual(expect.arrayContaining([expect.any(String)]))
+        expect(linkTexts).toEqual(wdioExpect.arrayContaining([wdioExpect.any(String)]))
         expect(linkTexts.every((text: string) => typeof text === 'string')).toBe(true)
     })
 
