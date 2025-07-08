@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  expect-webdriverio: file:.yalc/expect-webdriverio
+
 importers:
 
   .:
@@ -13,16 +16,16 @@ importers:
         version: 5.1.8
       '@wdio/cli':
         specifier: ^9.16.2
-        version: 9.16.2(expect-webdriverio@5.3.4)
+        version: 9.16.2(expect-webdriverio@6.0.0)
       '@wdio/eslint':
         specifier: ^0.1.2
         version: 0.1.2(@typescript-eslint/eslint-plugin@8.35.1(@typescript-eslint/parser@8.35.1(eslint@9.30.1)(typescript@5.8.3))(eslint@9.30.1)(typescript@5.8.3))(eslint@9.30.1)(typescript@5.8.3)
       '@wdio/globals':
         specifier: ^9.16.2
-        version: 9.16.2(expect-webdriverio@5.3.4)(webdriverio@9.16.2)
+        version: 9.16.2(expect-webdriverio@6.0.0)(webdriverio@9.16.2)
       '@wdio/jasmine-framework':
         specifier: ^9.16.2
-        version: 9.16.2(expect-webdriverio@5.3.4)(webdriverio@9.16.2)
+        version: 9.16.2(expect-webdriverio@6.0.0)(webdriverio@9.16.2)
       '@wdio/local-runner':
         specifier: ^9.16.2
         version: 9.16.2(@wdio/globals@9.16.2)(webdriverio@9.16.2)
@@ -35,6 +38,9 @@ importers:
       eslint:
         specifier: ^9.30.1
         version: 9.30.1
+      expect-webdriverio:
+        specifier: file:.yalc/expect-webdriverio
+        version: file:.yalc/expect-webdriverio(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1189,9 +1195,9 @@ packages:
     resolution: {integrity: sha512-Fqs7ChZm72y40wKjOFXBKg7nJZvQJmewP5/7LtePDdnah/+FH9Hp5sgMujSCMPXlxOAW2//1jrW9pnsY7o20vQ==}
     engines: {node: '>=18'}
 
-  expect-webdriverio@5.3.4:
-    resolution: {integrity: sha512-FU+96C0nqeYTXrJcGLUDB6hPKKaSm1/tVHjFDE4EDHGCYvajAHCC2MBQJ5MomjCmp6lGMz36lDHeZj52LHylyA==}
-    engines: {node: '>=18 || >=20 || >=22'}
+  expect-webdriverio@file:.yalc/expect-webdriverio:
+    resolution: {directory: .yalc/expect-webdriverio, type: directory}
+    engines: {node: '>=20 || >=22'}
     peerDependencies:
       '@wdio/globals': ^9.0.0
       '@wdio/logger': ^9.0.0
@@ -2755,7 +2761,7 @@ snapshots:
 
   '@jest/pattern@30.0.1':
     dependencies:
-      '@types/node': 20.19.4
+      '@types/node': 24.0.10
       jest-regex-util: 30.0.1
 
   '@jest/schemas@30.0.1':
@@ -2768,7 +2774,7 @@ snapshots:
       '@jest/schemas': 30.0.1
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.19.4
+      '@types/node': 24.0.10
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
@@ -3016,12 +3022,12 @@ snapshots:
       magic-string: 0.30.17
       pathe: 2.0.3
 
-  '@wdio/cli@9.16.2(expect-webdriverio@5.3.4)':
+  '@wdio/cli@9.16.2(expect-webdriverio@6.0.0)':
     dependencies:
       '@types/node': 20.19.4
       '@vitest/snapshot': 2.1.9
       '@wdio/config': 9.16.2
-      '@wdio/globals': 9.16.2(expect-webdriverio@5.3.4)(webdriverio@9.16.2)
+      '@wdio/globals': 9.16.2(expect-webdriverio@6.0.0)(webdriverio@9.16.2)
       '@wdio/logger': 9.16.2
       '@wdio/protocols': 9.16.2
       '@wdio/types': 9.16.2
@@ -3084,19 +3090,19 @@ snapshots:
       - supports-color
       - typescript
 
-  '@wdio/globals@9.16.2(expect-webdriverio@5.3.4)(webdriverio@9.16.2)':
+  '@wdio/globals@9.16.2(expect-webdriverio@6.0.0)(webdriverio@9.16.2)':
     dependencies:
-      expect-webdriverio: 5.3.4(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2)
+      expect-webdriverio: file:.yalc/expect-webdriverio(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2)
       webdriverio: 9.16.2
 
-  '@wdio/jasmine-framework@9.16.2(expect-webdriverio@5.3.4)(webdriverio@9.16.2)':
+  '@wdio/jasmine-framework@9.16.2(expect-webdriverio@6.0.0)(webdriverio@9.16.2)':
     dependencies:
       '@types/node': 20.19.4
-      '@wdio/globals': 9.16.2(expect-webdriverio@5.3.4)(webdriverio@9.16.2)
+      '@wdio/globals': 9.16.2(expect-webdriverio@6.0.0)(webdriverio@9.16.2)
       '@wdio/logger': 9.16.2
       '@wdio/types': 9.16.2
       '@wdio/utils': 9.16.2
-      expect-webdriverio: 5.3.4(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2)
+      expect-webdriverio: file:.yalc/expect-webdriverio(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2)
       jasmine: 5.8.0
       webdriverio: 9.16.2
     transitivePeerDependencies:
@@ -3108,10 +3114,10 @@ snapshots:
       '@types/node': 20.19.4
       '@wdio/logger': 9.16.2
       '@wdio/repl': 9.16.2
-      '@wdio/runner': 9.16.2(expect-webdriverio@5.3.4)(webdriverio@9.16.2)
+      '@wdio/runner': 9.16.2(expect-webdriverio@6.0.0)(webdriverio@9.16.2)
       '@wdio/types': 9.16.2
       exit-hook: 4.0.0
-      expect-webdriverio: 5.3.4(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2)
+      expect-webdriverio: file:.yalc/expect-webdriverio(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2)
       split2: 4.2.0
       stream-buffers: 3.0.3
     transitivePeerDependencies:
@@ -3143,17 +3149,17 @@ snapshots:
       diff: 7.0.0
       object-inspect: 1.13.4
 
-  '@wdio/runner@9.16.2(expect-webdriverio@5.3.4)(webdriverio@9.16.2)':
+  '@wdio/runner@9.16.2(expect-webdriverio@6.0.0)(webdriverio@9.16.2)':
     dependencies:
       '@types/node': 20.19.4
       '@wdio/config': 9.16.2
       '@wdio/dot-reporter': 9.16.2
-      '@wdio/globals': 9.16.2(expect-webdriverio@5.3.4)(webdriverio@9.16.2)
+      '@wdio/globals': 9.16.2(expect-webdriverio@6.0.0)(webdriverio@9.16.2)
       '@wdio/logger': 9.16.2
       '@wdio/types': 9.16.2
       '@wdio/utils': 9.16.2
       deepmerge-ts: 7.1.5
-      expect-webdriverio: 5.3.4(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2)
+      expect-webdriverio: file:.yalc/expect-webdriverio(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2)
       webdriver: 9.16.2
       webdriverio: 9.16.2
     transitivePeerDependencies:
@@ -3857,10 +3863,10 @@ snapshots:
 
   exit-hook@4.0.0: {}
 
-  expect-webdriverio@5.3.4(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2):
+  expect-webdriverio@file:.yalc/expect-webdriverio(@wdio/globals@9.16.2)(@wdio/logger@9.16.2)(webdriverio@9.16.2):
     dependencies:
       '@vitest/snapshot': 3.2.4
-      '@wdio/globals': 9.16.2(expect-webdriverio@5.3.4)(webdriverio@9.16.2)
+      '@wdio/globals': 9.16.2(expect-webdriverio@6.0.0)(webdriverio@9.16.2)
       '@wdio/logger': 9.16.2
       expect: 30.0.4
       jest-matcher-utils: 30.0.4
@@ -4298,7 +4304,7 @@ snapshots:
   jest-mock@30.0.2:
     dependencies:
       '@jest/types': 30.0.1
-      '@types/node': 20.19.4
+      '@types/node': 24.0.10
       jest-util: 30.0.2
 
   jest-regex-util@30.0.1: {}
@@ -4306,7 +4312,7 @@ snapshots:
   jest-util@30.0.2:
     dependencies:
       '@jest/types': 30.0.1
-      '@types/node': 20.19.4
+      '@types/node': 24.0.10
       chalk: 4.1.2
       ci-info: 4.2.0
       graceful-fs: 4.2.11

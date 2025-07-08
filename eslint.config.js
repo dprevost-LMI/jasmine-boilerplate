@@ -7,6 +7,6 @@ import wdioEslint from '@wdio/eslint'
 export default [
     ...wdioEslint.config(),
     {
-        ignores: ['.history/**']
+        ignores: ['.history/**', '.yalc/**']
     }
 ]

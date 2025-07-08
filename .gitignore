@@ -63,3 +63,7 @@ errorShots
 
 # VS Code Local History
 .history
+
+# Yalc local packages
+.yalc
+yalc.lock
