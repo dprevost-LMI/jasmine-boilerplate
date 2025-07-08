@@ -49,7 +49,7 @@ describe('Basic Jasmine Matchers', () => {
 
         // Test navigation links count
         const navLinks = await $$('nav a')
-        const linkCount = navLinks.length
+        const linkCount = await navLinks.length
         expect(linkCount).toBeGreaterThanOrEqual(1)
         expect(typeof linkCount).toBe('number')
     })
@@ -115,11 +115,12 @@ describe('Basic Jasmine Matchers', () => {
         // Test multiple elements as array
         const allLinks = await $$('a')
         expect(allLinks).toEqual(jasmine.any(Array))
-        expect(allLinks.length).toBeGreaterThan(0)
+        const allLinksLength = await allLinks.length
+        expect(allLinksLength).toBeGreaterThan(0)
 
         // Test element collection properties
         const linkTexts = []
-        const maxLinks = Math.min(3, await allLinks.length)
+        const maxLinks = Math.min(3, allLinksLength)
         for (let i = 0; i < maxLinks; i++) {
             const linkText = await allLinks[i].getText()
             linkTexts.push(linkText)
@@ -362,9 +363,9 @@ describe('Basic Jasmine Matchers', () => {
         expect(titleLength).toBeGreaterThan(0)
         expect(typeof titleLength).toBe('number')
 
-        // Test Promise-like behavior
+        // Test Promise-like behavior - explicitly void the promise to show it's intentional
         const urlPromise = browser.getUrl()
-        expect(urlPromise).toEqual(jasmine.any(Promise))
+        void expect(urlPromise).toEqual(jasmine.any(Promise))
 
         const url = await urlPromise
         expect(url).toBe('https://webdriver.io/')

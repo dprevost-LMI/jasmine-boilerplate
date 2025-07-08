@@ -8,5 +8,17 @@ export default [
     ...wdioEslint.config(),
     {
         ignores: ['.history/**', '.yalc/**']
+    },
+    {
+        files: ['**/*.ts', '**/*.tsx'],
+        languageOptions: {
+            parserOptions: {
+                project: true,
+                tsconfigRootDir: import.meta.dirname,
+            }
+        },
+        rules: {
+            '@typescript-eslint/no-floating-promises': 'error'
+        }
     }
 ]
